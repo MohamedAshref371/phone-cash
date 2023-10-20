@@ -64,7 +64,7 @@
             this.search.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.search.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.search.Location = new System.Drawing.Point(360, 8);
+            this.search.Location = new System.Drawing.Point(491, 8);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(102, 33);
             this.search.TabIndex = 11;
@@ -77,16 +77,17 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label1.Location = new System.Drawing.Point(6, 11);
+            this.label1.Location = new System.Drawing.Point(771, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 27);
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(115, 27);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Phone Number:";
+            this.label1.Text = "رقم الهاتف:";
             // 
             // phoneNumber
             // 
             this.phoneNumber.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.phoneNumber.Location = new System.Drawing.Point(188, 8);
+            this.phoneNumber.Location = new System.Drawing.Point(599, 8);
             this.phoneNumber.MaxLength = 11;
             this.phoneNumber.Name = "phoneNumber";
             this.phoneNumber.Size = new System.Drawing.Size(166, 33);
@@ -99,7 +100,7 @@
             this.maxWithdraw.DecimalPlaces = 2;
             this.maxWithdraw.Font = new System.Drawing.Font("Tahoma", 16F);
             this.maxWithdraw.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.maxWithdraw.Location = new System.Drawing.Point(188, 51);
+            this.maxWithdraw.Location = new System.Drawing.Point(580, 56);
             this.maxWithdraw.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -115,16 +116,17 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label2.Location = new System.Drawing.Point(6, 53);
+            this.label2.Location = new System.Drawing.Point(743, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(176, 27);
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label2.Size = new System.Drawing.Size(150, 27);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Max Withdrawal:";
+            this.label2.Text = "أقصى السحب:";
             // 
             // comment
             // 
             this.comment.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.comment.Location = new System.Drawing.Point(575, 90);
+            this.comment.Location = new System.Drawing.Point(12, 98);
             this.comment.MaxLength = 10000;
             this.comment.Multiline = true;
             this.comment.Name = "comment";
@@ -139,7 +141,7 @@
             this.add.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.add.Location = new System.Drawing.Point(338, 133);
+            this.add.Location = new System.Drawing.Point(393, 131);
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(128, 37);
             this.add.TabIndex = 14;
@@ -209,7 +211,7 @@
             this.clear.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clear.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.clear.Location = new System.Drawing.Point(7, 136);
+            this.clear.Location = new System.Drawing.Point(749, 138);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(139, 33);
             this.clear.TabIndex = 18;
@@ -223,11 +225,11 @@
             this.getExcel.FlatAppearance.BorderColor = System.Drawing.Color.Purple;
             this.getExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.getExcel.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.getExcel.Location = new System.Drawing.Point(175, 136);
+            this.getExcel.Location = new System.Drawing.Point(338, 17);
             this.getExcel.Name = "getExcel";
-            this.getExcel.Size = new System.Drawing.Size(136, 33);
+            this.getExcel.Size = new System.Drawing.Size(128, 33);
             this.getExcel.TabIndex = 19;
-            this.getExcel.Text = "Excel File";
+            this.getExcel.Text = "ملف إكسيل";
             this.getExcel.UseVisualStyleBackColor = false;
             this.getExcel.Click += new System.EventHandler(this.GetExcel_Click);
             // 
@@ -241,7 +243,7 @@
             this.maxDepo.DecimalPlaces = 2;
             this.maxDepo.Font = new System.Drawing.Font("Tahoma", 16F);
             this.maxDepo.ForeColor = System.Drawing.Color.Green;
-            this.maxDepo.Location = new System.Drawing.Point(188, 90);
+            this.maxDepo.Location = new System.Drawing.Point(580, 94);
             this.maxDepo.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -257,11 +259,12 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label7.Location = new System.Drawing.Point(20, 92);
+            this.label7.Location = new System.Drawing.Point(750, 96);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(140, 27);
+            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label7.Size = new System.Drawing.Size(134, 27);
             this.label7.TabIndex = 20;
-            this.label7.Text = "Max Deposit:";
+            this.label7.Text = "أقصى الإيداع:";
             // 
             // remDepo
             // 
@@ -269,7 +272,7 @@
             this.remDepo.Enabled = false;
             this.remDepo.Font = new System.Drawing.Font("Tahoma", 16F);
             this.remDepo.ForeColor = System.Drawing.Color.Green;
-            this.remDepo.Location = new System.Drawing.Point(608, 51);
+            this.remDepo.Location = new System.Drawing.Point(20, 50);
             this.remDepo.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -286,7 +289,7 @@
             this.remWithdraw.Enabled = false;
             this.remWithdraw.Font = new System.Drawing.Font("Tahoma", 16F);
             this.remWithdraw.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.remWithdraw.Location = new System.Drawing.Point(608, 12);
+            this.remWithdraw.Location = new System.Drawing.Point(20, 11);
             this.remWithdraw.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -303,7 +306,7 @@
             this.equalMax.Checked = true;
             this.equalMax.CheckState = System.Windows.Forms.CheckState.Checked;
             this.equalMax.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.equalMax.Location = new System.Drawing.Point(765, 25);
+            this.equalMax.Location = new System.Drawing.Point(177, 24);
             this.equalMax.Name = "equalMax";
             this.equalMax.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.equalMax.Size = new System.Drawing.Size(123, 42);
@@ -317,18 +320,20 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label3.Location = new System.Drawing.Point(348, 72);
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(472, 72);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 27);
+            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label3.Size = new System.Drawing.Size(77, 27);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Balance:";
+            this.label3.Text = "الرصيد:";
             // 
             // balance
             // 
             this.balance.DecimalPlaces = 2;
             this.balance.Font = new System.Drawing.Font("Tahoma", 16F);
             this.balance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.balance.Location = new System.Drawing.Point(443, 72);
+            this.balance.Location = new System.Drawing.Point(347, 70);
             this.balance.Maximum = new decimal(new int[] {
             9999999,
             0,
