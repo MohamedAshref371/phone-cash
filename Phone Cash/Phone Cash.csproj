@@ -8,7 +8,7 @@
     <ProjectGuid>{8DF728B7-C159-4F4C-AB1C-A028EA041870}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Phone_Cash</RootNamespace>
-    <AssemblyName>Phone Cash v1.3</AssemblyName>
+    <AssemblyName>Phone Cash v1.4</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
