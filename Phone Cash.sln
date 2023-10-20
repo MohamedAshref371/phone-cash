@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phone Cash", "Phone Cash\Phone Cash.csproj", "{8DF728B7-C159-4F4C-AB1C-A028EA041870}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DF728B7-C159-4F4C-AB1C-A028EA041870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF728B7-C159-4F4C-AB1C-A028EA041870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF728B7-C159-4F4C-AB1C-A028EA041870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF728B7-C159-4F4C-AB1C-A028EA041870}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44D717A1-B561-44C5-A229-3DF5F1EF7E83}
+	EndGlobalSection
+EndGlobal
