@@ -126,7 +126,7 @@
             // comment
             // 
             this.comment.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.comment.Location = new System.Drawing.Point(12, 98);
+            this.comment.Location = new System.Drawing.Point(12, 95);
             this.comment.MaxLength = 10000;
             this.comment.Multiline = true;
             this.comment.Name = "comment";
