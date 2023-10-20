@@ -129,6 +129,7 @@
             0,
             0});
             this.amount.Name = "amount";
+            this.amount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.amount.Size = new System.Drawing.Size(221, 33);
             this.amount.TabIndex = 7;
             this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -217,7 +218,7 @@
             this.getExcel.FlatAppearance.BorderColor = System.Drawing.Color.Purple;
             this.getExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.getExcel.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.getExcel.Location = new System.Drawing.Point(360, 12);
+            this.getExcel.Location = new System.Drawing.Point(360, 8);
             this.getExcel.Name = "getExcel";
             this.getExcel.Size = new System.Drawing.Size(136, 33);
             this.getExcel.TabIndex = 20;

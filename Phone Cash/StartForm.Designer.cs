@@ -107,6 +107,7 @@
             0,
             0});
             this.maxWithdraw.Name = "maxWithdraw";
+            this.maxWithdraw.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.maxWithdraw.Size = new System.Drawing.Size(151, 33);
             this.maxWithdraw.TabIndex = 13;
             this.maxWithdraw.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -164,7 +165,7 @@
             this.selectAll.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.selectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectAll.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.selectAll.Location = new System.Drawing.Point(591, 175);
+            this.selectAll.Location = new System.Drawing.Point(187, 175);
             this.selectAll.Name = "selectAll";
             this.selectAll.Size = new System.Drawing.Size(122, 33);
             this.selectAll.TabIndex = 19;
@@ -174,36 +175,36 @@
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label6.Location = new System.Drawing.Point(362, 180);
+            this.label6.Location = new System.Drawing.Point(424, 180);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 27);
             this.label6.TabIndex = 18;
-            this.label6.Text = "Remaining";
+            this.label6.Text = "الباقي";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label5.Location = new System.Drawing.Point(215, 180);
+            this.label5.Location = new System.Drawing.Point(597, 180);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 27);
             this.label5.TabIndex = 18;
-            this.label5.Text = "Balance";
+            this.label5.Text = "الرصيد";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label4.Location = new System.Drawing.Point(26, 180);
+            this.label4.Location = new System.Drawing.Point(718, 180);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(156, 27);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Phone Number";
+            this.label4.Text = "رقم الهاتف";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // clear
             // 
@@ -250,6 +251,7 @@
             0,
             0});
             this.maxDepo.Name = "maxDepo";
+            this.maxDepo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.maxDepo.Size = new System.Drawing.Size(151, 33);
             this.maxDepo.TabIndex = 21;
             this.maxDepo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -279,6 +281,7 @@
             0,
             0});
             this.remDepo.Name = "remDepo";
+            this.remDepo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.remDepo.Size = new System.Drawing.Size(151, 33);
             this.remDepo.TabIndex = 25;
             this.remDepo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -296,6 +299,7 @@
             0,
             0});
             this.remWithdraw.Name = "remWithdraw";
+            this.remWithdraw.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.remWithdraw.Size = new System.Drawing.Size(151, 33);
             this.remWithdraw.TabIndex = 23;
             this.remWithdraw.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -340,6 +344,7 @@
             0,
             0});
             this.balance.Name = "balance";
+            this.balance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.balance.Size = new System.Drawing.Size(123, 33);
             this.balance.TabIndex = 28;
             this.balance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

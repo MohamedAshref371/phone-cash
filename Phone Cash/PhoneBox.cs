@@ -14,18 +14,21 @@ namespace Phone_Cash
         public Button select, edit, delete;
 
 
-        static Font font = new Font("Tahoma", 16F);
+        static readonly Font font = new Font("Tahoma", 16F);
 
+        static readonly Point phonePoint = new Point(692, 16); //new Point(15, 16);
+        static readonly Point palancePoint = new Point(557, 16); //new Point(191, 16);
+        static readonly Point remainingPoint = new Point(349, 16); //new Point(299, 16);
+        static readonly Point selectPoint = new Point(165, 12); //new Point(584, 12);
+        static readonly Point editPoint = new Point(115, 13); //new Point(700, 13);
+        static readonly Point deletePoint = new Point(12, 13); //new Point(747, 13);
 
-        static Point phonePoint = new Point(15, 16);
-        static Point palancePoint = new Point(191, 16);
-        static Point remainingPoint = new Point(299, 16);
-
-        static Size phoneSize = new Size(144, 27);
-        static Size balanceSize = new Size(103, 27);
-        static Size remainingSize = new Size(203, 27);
-
-
+        static readonly Size phoneSize = new Size(144, 27);
+        static readonly Size balanceSize = new Size(103, 27);
+        static readonly Size remainingSize = new Size(203, 27);
+        static readonly Size selectSize = new Size(102, 36);
+        static readonly Size editSize = new Size(36, 36);
+        static readonly Size deleteSize = new Size(92, 36);
 
 
         public PhoneBox(string phoneText, string palanceText, string maximumText)
@@ -63,8 +66,8 @@ namespace Phone_Cash
             select.FlatAppearance.BorderColor = Color.Teal;
             select.FlatStyle = FlatStyle.Flat;
             select.Font = font;
-            select.Location = new Point(584, 12);
-            select.Size = new Size(102, 36);
+            select.Location = selectPoint;
+            select.Size = selectSize;
             select.Tag = this;
             select.Text = "اختيار";
             select.TabStop = false;
@@ -73,8 +76,8 @@ namespace Phone_Cash
             edit.FlatStyle = FlatStyle.Flat;
             edit.Font = font;
             edit.ForeColor = Color.Blue;
-            edit.Location = new Point(700, 13);
-            edit.Size = new Size(36, 36);
+            edit.Location = editPoint;
+            edit.Size = editSize;
             edit.Tag = this;
             edit.Text = "!";
             edit.TabStop = false;
@@ -83,8 +86,8 @@ namespace Phone_Cash
             delete.FlatAppearance.BorderColor = Color.Maroon;
             delete.FlatStyle = FlatStyle.Flat;
             delete.Font = font;
-            delete.Location = new Point(747, 13);
-            delete.Size = new Size(92, 36);
+            delete.Location = deletePoint;
+            delete.Size = deleteSize;
             delete.Tag = this;
             delete.Text = "حذف";
             delete.TabStop = false;
