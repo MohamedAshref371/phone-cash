@@ -179,7 +179,7 @@ namespace Phone_Cash
                 command.CommandText = $"DELETE FROM payments WHERE phone='{phoneNumber.Text}'";
                 if ((phoneNumber.Text == null || phoneNumber.Text == "") && MessageBox.Show("هل أنت متأكد من مسح كل البيانات؟", ">_<", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    command.CommandText = $"DELETE FROM payments";
+                    command.CommandText = $"DELETE FROM payments; VACUUM;";
                 }
                 command.ExecuteNonQuery();
                 command.Cancel();
