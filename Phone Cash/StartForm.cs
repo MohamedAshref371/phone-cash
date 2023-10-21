@@ -209,11 +209,11 @@ namespace Phone_Cash
                 reader = command.ExecuteReader();
                 double count = 0;
                 while (reader.Read()) count += reader.GetDouble(0);
-                Form1 f = new Form1(null, count.ToString());
-                f.ShowDialog();
                 reader.Close();
                 command.Cancel();
                 connection.Close();
+                Form1 f = new Form1(null, count.ToString());
+                f.ShowDialog();
             }
             catch (Exception ex)
             {
