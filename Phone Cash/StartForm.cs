@@ -110,7 +110,7 @@ namespace Phone_Cash
                     MessageBox.Show(ex.Message);
                 }
             else
-                MessageBox.Show("Write The Phone Number.");
+                MessageBox.Show("أكتب رقم الهاتف");
         }
 
         private void Edit_Click(object sender, EventArgs e)
@@ -150,7 +150,7 @@ namespace Phone_Cash
                 pb = (PhoneBox)((Button)sender).Tag;
                 command.CommandText = $"SELECT * FROM payments WHERE phone='{pb.phone.Text}'";
                 reader = command.ExecuteReader();
-                if (!reader.HasRows || MessageBox.Show("There are payments for this phone number.\nAre you sure you want to delete it?",":'(", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (!reader.HasRows || MessageBox.Show("يوجد عمليات على هذا الرقم\nهل أنت متأكد بأنك تريد حذفه؟",":'(", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     pb.Enabled = false;
                     reader.Close();
@@ -204,8 +204,16 @@ namespace Phone_Cash
         {
             try
             {
-                Form1 f = new Form1();
+                connection.Open();
+                command.CommandText = $"SELECT balance FROM phones";
+                reader = command.ExecuteReader();
+                double count = 0;
+                while (reader.Read()) count += reader.GetDouble(0);
+                Form1 f = new Form1(null, count.ToString());
                 f.ShowDialog();
+                reader.Close();
+                command.Cancel();
+                connection.Close();
             }
             catch (Exception ex)
             {
@@ -227,7 +235,7 @@ namespace Phone_Cash
                     pb = null;
                 }
             else
-                MessageBox.Show("Write The Phone Number.");
+                MessageBox.Show("أكتب رقم الهاتف");
         }
 
         private void Clear_Click(object sender, EventArgs e)

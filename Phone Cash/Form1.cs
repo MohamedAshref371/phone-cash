@@ -64,7 +64,7 @@ namespace Phone_Cash
                     }
                     else
                     {
-                        MessageBox.Show("DepositAmount Is Greater Than DepositRemaining.");
+                        MessageBox.Show("قيمة الإيداع أكبر من باقي الإيداع");
                     }
                 }
                 table = new DataTable();
@@ -103,7 +103,7 @@ namespace Phone_Cash
                     }
                     else
                     {
-                        MessageBox.Show("WithdrawalAmount Is Greater Than WithdrawalRemaining Or Balance.");
+                        MessageBox.Show("قيمة السحب أكبر من باقي السحب أو الرصيد");
                     }
                 }
 
