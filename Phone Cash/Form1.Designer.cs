@@ -53,6 +53,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.withdraw = new System.Windows.Forms.Button();
             this.del = new System.Windows.Forms.Button();
+            this.newFirstCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.amount)).BeginInit();
             this.SuspendLayout();
@@ -331,11 +332,25 @@
             this.del.UseVisualStyleBackColor = false;
             this.del.Click += new System.EventHandler(this.Del_Click);
             // 
+            // newFirstCheck
+            // 
+            this.newFirstCheck.AutoSize = true;
+            this.newFirstCheck.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.newFirstCheck.Location = new System.Drawing.Point(342, 171);
+            this.newFirstCheck.Name = "newFirstCheck";
+            this.newFirstCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.newFirstCheck.Size = new System.Drawing.Size(101, 23);
+            this.newFirstCheck.TabIndex = 29;
+            this.newFirstCheck.Text = "الأحدث أولاً";
+            this.newFirstCheck.UseVisualStyleBackColor = true;
+            this.newFirstCheck.CheckedChanged += new System.EventHandler(this.NewFirstCheck_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 700);
+            this.Controls.Add(this.newFirstCheck);
             this.Controls.Add(this.del);
             this.Controls.Add(this.withdraw);
             this.Controls.Add(this.label9);
@@ -395,6 +410,7 @@
         public System.Windows.Forms.Label remDepo;
         public System.Windows.Forms.Label remWithdraw;
         private System.Windows.Forms.Button del;
+        public System.Windows.Forms.CheckBox newFirstCheck;
     }
 }
 

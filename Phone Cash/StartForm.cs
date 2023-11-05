@@ -24,6 +24,8 @@ namespace Phone_Cash
         PhoneBox pb;
         //PhoneBox pbLast = null;
 
+        //public static readonly string save = Microsoft.VisualBasic.FileIO.SpecialDirectories.AllUsersApplicationData.Replace(Application.ProductVersion, "");
+
         public StartForm()
         {
             InitializeComponent();
@@ -196,7 +198,7 @@ namespace Phone_Cash
                 reader.Close();
                 command.Cancel();
                 connection.Close();
-                Form1 f = new Form1(s0, s1, s2, s3, s4, s5);
+                Form1 f = new Form1(s0, s1, s2, s3, s4, s5, System.IO.File.Exists("newFirst") && System.IO.File.ReadAllText("newFirst") == "1");
                 f.ShowDialog();
                 pb.balance.Text = f.balance.Text;
                 pb.remaining.Text = $"{f.remWithdraw.Text} - {f.remDepo.Text}";
@@ -219,7 +221,7 @@ namespace Phone_Cash
                 reader.Close();
                 command.Cancel();
                 connection.Close();
-                Form1 f = new Form1(null, count.ToString());
+                Form1 f = new Form1(balanc: count.ToString(), newFirst: System.IO.File.Exists("newFirst") && System.IO.File.ReadAllText("newFirst") == "1");
                 f.ShowDialog();
             }
             catch (Exception ex)

@@ -14,15 +14,18 @@ namespace Phone_Cash
 {
     public partial class Form1 : Form
     {
+
         readonly static SQLiteConnection connection = StartForm.connection;
         readonly SQLiteCommand command;
         //SQLiteDataReader reader;
         SQLiteDataAdapter adapter;
         DataTable table;
 
-        public Form1(string phone = null, string balanc = null, string remW = null, string remD = null, string maxW = null, string maxD = null)
+        public Form1(string phone = null, string balanc = null, string remW = null, string remD = null, string maxW = null, string maxD = null, bool newFirst = false)
         {
             InitializeComponent();
+            allow = false;
+            newFirstCheck.Checked = newFirst; allow = true;
             phoneNumber.Text = phone;
             balance.Text = balanc;
             remWithdraw.Text = remW;
@@ -31,10 +34,10 @@ namespace Phone_Cash
             maxDepo.Text = maxD;
             command = new SQLiteCommand(connection);
             if (phone != null && phone != "")
-                adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phone}' ORDER BY id DESC", connection);
+                adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phoneNumber.Text}'" + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
             else
             {
-                adapter = new SQLiteDataAdapter("SELECT * FROM payments ORDER BY id DESC", connection);
+                adapter = new SQLiteDataAdapter("SELECT * FROM payments" + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
                 add.Enabled = false;
                 withdraw.Enabled = false;
                 amount.Enabled = false;
@@ -194,6 +197,23 @@ namespace Phone_Cash
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        bool allow = false;
+        private void NewFirstCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!allow) return;
+            if (newFirstCheck.Checked) System.IO.File.WriteAllText("newFirst","1");
+            else System.IO.File.WriteAllText("newFirst", "0");
+
+            if (phoneNumber.Text != null && phoneNumber.Text != "")
+                adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phoneNumber.Text}'" + (newFirstCheck.Checked? " ORDER BY id DESC":""), connection);
+            else
+            {
+                adapter = new SQLiteDataAdapter("SELECT * FROM payments" + (newFirstCheck.Checked? " ORDER BY id DESC" : ""), connection);
+            }
+
+            Form1_Load(sender, e);
         }
     }
 }
