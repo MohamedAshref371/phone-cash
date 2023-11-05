@@ -153,7 +153,13 @@ namespace Phone_Cash
                 if (!reader.HasRows || MessageBox.Show("يوجد عمليات على هذا الرقم\nهل أنت متأكد بأنك تريد حذفه؟",":'(", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     pb.Enabled = false;
-                    panel1.Controls.Remove(pb);
+                    pb.Size = new Size(pb.Size.Width, 30);
+                    pb.phone.Location = new Point(pb.phone.Location.X, 0);
+                    pb.phone.Text = "تم الحذف";
+                    pb.remaining.Visible = false; pb.balance.Visible = false;
+                    pb.delete.Visible = false; pb.edit.Visible = false; pb.select.Visible = false;
+                    //panel1.Controls.Remove(pb);
+
                     reader.Close();
                     command.Cancel();
                     command.CommandText = $"DELETE FROM payments WHERE phone='{pb.phone.Text}'; DELETE FROM phones WHERE phone='{pb.phone.Text}'";

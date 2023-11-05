@@ -31,10 +31,10 @@ namespace Phone_Cash
             maxDepo.Text = maxD;
             command = new SQLiteCommand(connection);
             if (phone != null && phone != "")
-                adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phone}'", connection);
+                adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phone}' ORDER BY id DESC", connection);
             else
             {
-                adapter = new SQLiteDataAdapter("SELECT * FROM payments", connection);
+                adapter = new SQLiteDataAdapter("SELECT * FROM payments ORDER BY id DESC", connection);
                 add.Enabled = false;
                 withdraw.Enabled = false;
                 amount.Enabled = false;

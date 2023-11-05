@@ -178,7 +178,7 @@
             // 
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label6.Location = new System.Drawing.Point(424, 180);
+            this.label6.Location = new System.Drawing.Point(419, 180);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 27);
             this.label6.TabIndex = 18;
@@ -189,7 +189,7 @@
             // 
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label5.Location = new System.Drawing.Point(597, 180);
+            this.label5.Location = new System.Drawing.Point(592, 180);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 27);
             this.label5.TabIndex = 18;
@@ -200,7 +200,7 @@
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label4.Location = new System.Drawing.Point(718, 180);
+            this.label4.Location = new System.Drawing.Point(713, 180);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(156, 27);
             this.label4.TabIndex = 18;
@@ -378,7 +378,6 @@
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "StartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "فون كاش: الفتح";
