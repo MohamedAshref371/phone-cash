@@ -22,7 +22,7 @@ namespace Phone_Cash
         DataTable table;
 
         PhoneBox pb;
-        PhoneBox pbLast = null;
+        //PhoneBox pbLast = null;
 
         public StartForm()
         {
@@ -36,12 +36,12 @@ namespace Phone_Cash
         void AddPhoneBoxToPanel(string s1, string s2, string s3)
         {
             pb = new PhoneBox(s1, s2, s3);
-            pb.Location = new Point(3, pbLast!=null? pbLast.Location.Y + 58 : 5);
+            //pb.Location = new Point(3, pbLast!=null? pbLast.Location.Y + 58 : 5);
             pb.select.Click += Select_Click;
             pb.edit.Click += Edit_Click;
             pb.delete.Click += Delete_Click;
             panel1.Controls.Add(pb);
-            pbLast = pb;
+            //pbLast = pb;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -153,6 +153,7 @@ namespace Phone_Cash
                 if (!reader.HasRows || MessageBox.Show("يوجد عمليات على هذا الرقم\nهل أنت متأكد بأنك تريد حذفه؟",":'(", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     pb.Enabled = false;
+                    panel1.Controls.Remove(pb);
                     reader.Close();
                     command.Cancel();
                     command.CommandText = $"DELETE FROM payments WHERE phone='{pb.phone.Text}'; DELETE FROM phones WHERE phone='{pb.phone.Text}'";
