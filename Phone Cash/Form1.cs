@@ -44,6 +44,7 @@ namespace Phone_Cash
                 comment.Enabled = false;
                 phoneNumber.Enabled = false;
             }
+            width = ClientSize.Width; height = ClientSize.Height;
         }
 
         private void Add_Click(object sender, EventArgs e)
@@ -214,6 +215,17 @@ namespace Phone_Cash
             }
 
             Form1_Load(sender, e);
+        }
+
+        int width = 0, height = 0;
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            FormSize fs = new FormSize(width, height, ClientSize.Width, ClientSize.Height);
+            fs.SetControls(Controls);
+
+            width = ClientSize.Width; height = ClientSize.Height;
+            dataGridView.Size = new Size(ClientSize.Width - dataGridView.Location.X - 12, ClientSize.Height - dataGridView.Location.Y - 12);
+
         }
     }
 }

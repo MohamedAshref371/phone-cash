@@ -31,8 +31,8 @@ namespace Phone_Cash
             InitializeComponent();
             command = new SQLiteCommand(connection);
             adapter = new SQLiteDataAdapter("SELECT * FROM phones", connection);
-            table = new DataTable();
-            table.TableName = "phones";
+            table = new DataTable { TableName = "phones" };
+            width = ClientSize.Width; height = ClientSize.Height;
         }
 
         void AddPhoneBoxToPanel(string s1, string s2, string s3)
@@ -59,7 +59,7 @@ namespace Phone_Cash
             connection.Close();
         }
 
-        private void phoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        private void PhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '' /*علامة الرجوع*/ && e.KeyChar != '' /*Ctrl X*/ && e.KeyChar != '' /*Ctrl C*/ && e.KeyChar != '' /*Ctrl V*/)
             {
@@ -287,5 +287,16 @@ namespace Phone_Cash
             }
         }
 
+        int width=0, height=0;
+        private void StartForm_SizeChanged(object sender, EventArgs e)
+        {
+            FormSize fs = new FormSize(width,height, ClientSize.Width, ClientSize.Height);
+            fs.SetControls(Controls);
+            fs.SetControls(panel1.Controls);
+            for (int i=0; i< panel1.Controls.Count; i++)
+                fs.SetControls(((PhoneBox)panel1.Controls[i]).Controls);
+
+            width = ClientSize.Width; height = ClientSize.Height;
+        }
     }
 }

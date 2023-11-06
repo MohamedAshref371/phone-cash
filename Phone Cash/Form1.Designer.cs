@@ -378,6 +378,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "فون كاش";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.amount)).EndInit();
             this.ResumeLayout(false);

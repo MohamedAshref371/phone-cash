@@ -93,7 +93,7 @@
             this.phoneNumber.Size = new System.Drawing.Size(166, 33);
             this.phoneNumber.TabIndex = 9;
             this.phoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.phoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneNumber_KeyPress);
+            this.phoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PhoneNumber_KeyPress);
             // 
             // maxWithdraw
             // 
@@ -382,6 +382,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "فون كاش: الفتح";
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.SizeChanged += new System.EventHandler(this.StartForm_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.maxWithdraw)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxDepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.remDepo)).EndInit();
