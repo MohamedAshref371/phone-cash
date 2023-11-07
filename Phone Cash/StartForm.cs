@@ -14,6 +14,7 @@ namespace Phone_Cash
 {
     public partial class StartForm : Form
     {
+        FormSize fs;
         public static readonly SQLiteConnection connection = new SQLiteConnection("Data Source=phone cash.db; Version=3;");
         readonly SQLiteCommand command;
         SQLiteDataReader reader;
@@ -290,7 +291,7 @@ namespace Phone_Cash
         int width=0, height=0;
         private void StartForm_SizeChanged(object sender, EventArgs e)
         {
-            FormSize fs = new FormSize(width,height, ClientSize.Width, ClientSize.Height);
+            fs = new FormSize(width,height, ClientSize.Width, ClientSize.Height);
             fs.SetControls(Controls);
             fs.SetControls(panel1.Controls);
             for (int i=0; i< panel1.Controls.Count; i++)

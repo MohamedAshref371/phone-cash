@@ -18,7 +18,7 @@ namespace Phone_Cash
         {
             control.Location = new Point(Round(control.Location.X * xDiv), Round(control.Location.Y * yDiv));
             control.Size = new Size(Round(control.Size.Width * xDiv), Round(control.Size.Height * yDiv));
-            if (font) control.Font = new Font(control.Font.FontFamily, Round(control.Font.Size * xDiv));
+            if (font) control.Font = new Font(control.Font.FontFamily, Round(control.Font.Size * yDiv));
         }
 
         public void SetControls(Control.ControlCollection controls)
