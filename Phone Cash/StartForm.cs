@@ -23,7 +23,7 @@ namespace Phone_Cash
         DataTable table;
 
         PhoneBox pb;
-        //PhoneBox pbLast = null;
+        PhoneBox pbLast = null;
 
         //public static readonly string save = Microsoft.VisualBasic.FileIO.SpecialDirectories.AllUsersApplicationData.Replace(Application.ProductVersion, "");
 
@@ -33,18 +33,18 @@ namespace Phone_Cash
             command = new SQLiteCommand(connection);
             adapter = new SQLiteDataAdapter("SELECT * FROM phones", connection);
             table = new DataTable { TableName = "phones" };
-            width = ClientSize.Width; height = ClientSize.Height;
+            //width = ClientSize.Width; height = ClientSize.Height;
         }
 
         void AddPhoneBoxToPanel(string s1, string s2, string s3)
         {
             pb = new PhoneBox(s1, s2, s3);
-            //pb.Location = new Point(3, pbLast!=null? pbLast.Location.Y + 58 : 5);
+            pb.Location = new Point(3, pbLast!=null? pbLast.Location.Y + 58 : 5);
             pb.select.Click += Select_Click;
             pb.edit.Click += Edit_Click;
             pb.delete.Click += Delete_Click;
             panel1.Controls.Add(pb);
-            //pbLast = pb;
+            pbLast = pb;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -288,16 +288,16 @@ namespace Phone_Cash
             }
         }
 
-        int width=0, height=0;
-        private void StartForm_SizeChanged(object sender, EventArgs e)
-        {
-            fs = new FormSize(width,height, ClientSize.Width, ClientSize.Height);
-            fs.SetControls(Controls);
-            fs.SetControls(panel1.Controls);
-            for (int i=0; i< panel1.Controls.Count; i++)
-                fs.SetControls(((PhoneBox)panel1.Controls[i]).Controls);
+        //int width=0, height=0;
+        //private void StartForm_SizeChanged(object sender, EventArgs e)
+        //{
+        //    fs = new FormSize(width,height, ClientSize.Width, ClientSize.Height);
+        //    fs.SetControls(Controls);
+        //    fs.SetControls(panel1.Controls);
+        //    for (int i=0; i< panel1.Controls.Count; i++)
+        //        fs.SetControls(((PhoneBox)panel1.Controls[i]).Controls);
 
-            width = ClientSize.Width; height = ClientSize.Height;
-        }
+        //    width = ClientSize.Width; height = ClientSize.Height;
+        //}
     }
 }

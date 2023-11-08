@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comment = new System.Windows.Forms.TextBox();
             this.add = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.selectAll = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -154,7 +154,6 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panel1.Location = new System.Drawing.Point(12, 209);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(876, 479);
@@ -378,11 +377,11 @@
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "StartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "فون كاش: الفتح";
             this.Load += new System.EventHandler(this.Form2_Load);
-            this.SizeChanged += new System.EventHandler(this.StartForm_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.maxWithdraw)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxDepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.remDepo)).EndInit();
@@ -402,7 +401,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox comment;
         private System.Windows.Forms.Button add;
-        private System.Windows.Forms.FlowLayoutPanel panel1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
