@@ -305,8 +305,6 @@ namespace Phone_Cash
 
         private void Filter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            panel1.Controls.Clear();
-
             if (filter.SelectedIndex == filter.Items.Count - 1)
             {
                 var fltr = new AddFilter();
@@ -316,6 +314,9 @@ namespace Phone_Cash
             }
             else
             {
+                panel1.Controls.Clear();
+                pbLast = null;
+
                 connection.Open();
 
                 if (filter.SelectedIndex > 0)
