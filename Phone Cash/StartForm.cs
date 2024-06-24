@@ -52,14 +52,9 @@ namespace Phone_Cash
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            filter.SelectedIndex = 0;
+
             connection.Open();
-            command.CommandText = "SELECT * FROM phones";
-            reader = command.ExecuteReader();
-
-            while (reader.Read()) AddPhoneBoxToPanel(reader.GetString(0), reader.GetDouble(1).ToString(), reader.GetDouble(2).ToString() + " - " + reader.GetDouble(3).ToString());
-
-            reader.Close();
-            command.Cancel();
 
             command.CommandText = "CREATE TABLE IF NOT EXISTS filter (name TEXT PRIMARY KEY, start_with TEXT)";
             command.ExecuteNonQuery();
