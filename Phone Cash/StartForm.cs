@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,8 @@ namespace Phone_Cash
         PhoneBox pbLast = null;
 
         //public static readonly string save = Microsoft.VisualBasic.FileIO.SpecialDirectories.AllUsersApplicationData.Replace(Application.ProductVersion, "");
+
+        Dictionary<string, string> filters = new Dictionary<string, string>();
 
         public StartForm()
         {
@@ -57,6 +60,22 @@ namespace Phone_Cash
 
             reader.Close();
             command.Cancel();
+
+            command.CommandText = "CREATE TABLE IF NOT EXISTS filter (name TEXT PRIMARY KEY, start_with TEXT)";
+            command.ExecuteNonQuery();
+            command.Cancel();
+
+            command.CommandText = "SELECT text,start_with FROM filter";
+            reader = command.ExecuteReader();
+            int i = 1;
+            while (reader.Read())
+            {
+                filter.Items.Insert(i, reader.GetString(0));
+                filters.Add(reader.GetString(0), reader.GetString(1));
+                i++;
+            }
+
+            reader.Close();
             connection.Close();
         }
 
@@ -286,6 +305,42 @@ namespace Phone_Cash
             {
                 remWithdraw.Enabled = true;
                 remDepo.Enabled = true;
+            }
+        }
+
+        private void Filter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+
+            if (filter.SelectedIndex == filter.Items.Count - 1)
+            {
+                var fltr = new AddFilter();
+                fltr.ShowDialog();
+                filter.Items.Insert(filter.Items.Count - 1, fltr.fltrName);
+                filters.Add(fltr.fltrName,fltr.fltrStartWith);
+            }
+            else
+            {
+                connection.Open();
+
+                if (filter.SelectedIndex > 0)
+                    try
+                    {
+                        command.CommandText = $"SELECT * FROM phones WHERE phone LIKE '{filters[filter.Text]}%'";
+                    }
+                    catch
+                    {
+                        command.CommandText = "SELECT * FROM phones";
+                    }
+                else
+                    command.CommandText = "SELECT * FROM phones";
+                
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                    AddPhoneBoxToPanel(reader.GetString(0), reader.GetDouble(1).ToString(), reader.GetDouble(2).ToString() + " - " + reader.GetDouble(3).ToString());
+                
+                reader.Close();
+                connection.Close();
             }
         }
 

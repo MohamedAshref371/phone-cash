@@ -51,6 +51,7 @@
             this.equalMax = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.balance = new System.Windows.Forms.NumericUpDown();
+            this.filter = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.maxWithdraw)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxDepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remDepo)).BeginInit();
@@ -349,11 +350,27 @@
             this.balance.TabIndex = 28;
             this.balance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // filter
+            // 
+            this.filter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filter.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.filter.FormattingEnabled = true;
+            this.filter.Items.AddRange(new object[] {
+            "إظهار الكل",
+            "إضافة فلتر..."});
+            this.filter.Location = new System.Drawing.Point(20, 178);
+            this.filter.Name = "filter";
+            this.filter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.filter.Size = new System.Drawing.Size(157, 29);
+            this.filter.TabIndex = 29;
+            this.filter.SelectedIndexChanged += new System.EventHandler(this.Filter_SelectedIndexChanged);
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 700);
+            this.Controls.Add(this.filter);
             this.Controls.Add(this.balance);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.equalMax);
@@ -416,5 +433,6 @@
         private System.Windows.Forms.CheckBox equalMax;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown balance;
+        private System.Windows.Forms.ComboBox filter;
     }
 }
