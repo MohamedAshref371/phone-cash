@@ -65,7 +65,7 @@ namespace Phone_Cash
             command.ExecuteNonQuery();
             command.Cancel();
 
-            command.CommandText = "SELECT text,start_with FROM filter";
+            command.CommandText = "SELECT name,start_with FROM filter";
             reader = command.ExecuteReader();
             int i = 1;
             while (reader.Read())
