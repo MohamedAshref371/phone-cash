@@ -52,6 +52,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.balance = new System.Windows.Forms.NumericUpDown();
             this.filter = new System.Windows.Forms.ComboBox();
+            this.secondFilter = new System.Windows.Forms.ComboBox();
+            this.types = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.maxWithdraw)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxDepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remDepo)).BeginInit();
@@ -363,13 +365,41 @@
             this.filter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.filter.Size = new System.Drawing.Size(157, 29);
             this.filter.TabIndex = 29;
+            this.filter.Visible = false;
             this.filter.SelectedIndexChanged += new System.EventHandler(this.Filter_SelectedIndexChanged);
+            // 
+            // secondFilter
+            // 
+            this.secondFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.secondFilter.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.secondFilter.FormattingEnabled = true;
+            this.secondFilter.Items.AddRange(new object[] {
+            "إظهار الكل"});
+            this.secondFilter.Location = new System.Drawing.Point(14, 176);
+            this.secondFilter.Name = "secondFilter";
+            this.secondFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.secondFilter.Size = new System.Drawing.Size(165, 31);
+            this.secondFilter.TabIndex = 30;
+            this.secondFilter.SelectedIndexChanged += new System.EventHandler(this.SecondFilter_SelectedIndexChanged);
+            // 
+            // types
+            // 
+            this.types.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.types.FormattingEnabled = true;
+            this.types.Location = new System.Drawing.Point(566, 139);
+            this.types.Name = "types";
+            this.types.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.types.Size = new System.Drawing.Size(165, 31);
+            this.types.TabIndex = 31;
+            this.types.Text = "النوع...";
             // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 700);
+            this.Controls.Add(this.types);
+            this.Controls.Add(this.secondFilter);
             this.Controls.Add(this.filter);
             this.Controls.Add(this.balance);
             this.Controls.Add(this.label3);
@@ -434,5 +464,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown balance;
         private System.Windows.Forms.ComboBox filter;
+        private System.Windows.Forms.ComboBox secondFilter;
+        private System.Windows.Forms.ComboBox types;
     }
 }

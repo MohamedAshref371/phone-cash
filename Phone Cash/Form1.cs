@@ -21,7 +21,7 @@ namespace Phone_Cash
         SQLiteDataAdapter adapter;
         DataTable table;
 
-        public Form1(string phone = null, string balanc = null, string remW = null, string remD = null, string maxW = null, string maxD = null, bool newFirst = false)
+        public Form1(string phone = null, string balanc = null, string remW = null, string remD = null, string maxW = null, string maxD = null, bool newFirst = false, string type = null)
         {
             InitializeComponent();
             allow = false;
@@ -37,7 +37,7 @@ namespace Phone_Cash
                 adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phoneNumber.Text}'" + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
             else
             {
-                adapter = new SQLiteDataAdapter("SELECT * FROM payments" + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
+                adapter = new SQLiteDataAdapter("SELECT * FROM payments" +(type != null && type.Trim() != "" ? $"SELECT * FROM payments where payments.phone = (select phones.phone from phones where type='{type}')" : "")+ (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
                 add.Enabled = false;
                 withdraw.Enabled = false;
                 amount.Enabled = false;

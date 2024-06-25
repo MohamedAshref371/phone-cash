@@ -28,8 +28,6 @@ namespace Phone_Cash
 
         //public static readonly string save = Microsoft.VisualBasic.FileIO.SpecialDirectories.AllUsersApplicationData.Replace(Application.ProductVersion, "");
 
-        Dictionary<string, string> filters = new Dictionary<string, string>();
-
         public StartForm()
         {
             InitializeComponent();
@@ -52,14 +50,17 @@ namespace Phone_Cash
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            filter.SelectedIndex = 0;
+            //filter.SelectedIndex = 0; // تم إلغاءه
+            secondFilter.SelectedIndex = 0;
 
             connection.Open();
 
+            #region filter table تم إلغاءه
+            
             command.CommandText = "CREATE TABLE IF NOT EXISTS filter (name TEXT PRIMARY KEY, start_with TEXT)";
             command.ExecuteNonQuery();
             command.Cancel();
-
+            /*
             command.CommandText = "SELECT name,start_with FROM filter";
             reader = command.ExecuteReader();
             int i = 1;
@@ -69,8 +70,33 @@ namespace Phone_Cash
                 filters.Add(reader.GetString(0), reader.GetString(1));
                 i++;
             }
+            reader.Close();*/
+            #endregion
 
+            #region 'type' column in 'phones' table
+            command.CommandText = "SELECT COUNT(*) AS count FROM pragma_table_info('phones') WHERE name='type'";
+            reader = command.ExecuteReader();
+            reader.Read();
+            int val = reader.GetInt32(0);
             reader.Close();
+            command.Cancel();
+            if (val == 0)
+            {
+                command.CommandText = "ALTER TABLE phones ADD COLUMN type TEXT";
+                command.ExecuteNonQuery();
+                command.Cancel();
+            }
+
+            command.CommandText = "SELECT DISTINCT type FROM phones WHERE type IS NOT NULL AND type <> ''";
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                secondFilter.Items.Add(reader.GetString(0));
+                types.Items.Add(reader.GetString(0));
+            }
+            reader.Close();
+            #endregion
+
             connection.Close();
         }
 
@@ -95,11 +121,21 @@ namespace Phone_Cash
                     connection.Open();
                     command.CommandText = $"SELECT * FROM phones WHERE phone='{phoneNumber.Text}'";
                     reader = command.ExecuteReader();
+                    string s = "";
                     if (!reader.HasRows)
                     {
                         reader.Close();
                         command.Cancel();
-                        command.CommandText = $"INSERT INTO phones (phone,balance,withdrawal_remaining,deposit_remaining,maximum_withdrawal,maximum_deposit,comment) VALUES ('{phoneNumber.Text}',{balance.Value},{remWithdraw.Value},{remDepo.Value},{maxWithdraw.Value},{maxDepo.Value},'{comment.Text}')";
+                        if (types.Text != "النوع...")
+                        {
+                            s = types.Text.Trim();
+                            if (s != "" && !types.Items.Contains(s))
+                            {
+                                types.Items.Add(s);
+                                secondFilter.Items.Add(s);
+                            }
+                        }
+                        command.CommandText = $"INSERT INTO phones (phone,balance,withdrawal_remaining,deposit_remaining,maximum_withdrawal,maximum_deposit,comment,type) VALUES ('{phoneNumber.Text}',{balance.Value},{remWithdraw.Value},{remDepo.Value},{maxWithdraw.Value},{maxDepo.Value},'{comment.Text}','{s}')";
                         command.ExecuteNonQuery();
                         AddPhoneBoxToPanel(phoneNumber.Text, balance.Value.ToString(), remWithdraw.Value.ToString() + " - " + remDepo.Value.ToString());
                     }
@@ -109,7 +145,16 @@ namespace Phone_Cash
                         if (MessageBox.Show("هل أنت متأكد من أنك تريد تحديث البيانات", "o_O", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
                             command.Cancel();
-                            command.CommandText = $"UPDATE phones SET balance={balance.Value},withdrawal_remaining={(equalMax.Checked? maxWithdraw.Value : remWithdraw.Value)},deposit_remaining={(equalMax.Checked ? maxDepo.Value : remDepo.Value)},maximum_withdrawal={maxWithdraw.Value},maximum_deposit={maxDepo.Value},comment='{comment.Text}' WHERE phone='{phoneNumber.Text}'";
+                            if (types.Text != "النوع...")
+                            {
+                                s = types.Text.Trim();
+                                if (s != "" && !types.Items.Contains(s))
+                                {
+                                    types.Items.Add(s);
+                                    secondFilter.Items.Add(s);
+                                }
+                            }
+                            command.CommandText = $"UPDATE phones SET balance={balance.Value},withdrawal_remaining={(equalMax.Checked? maxWithdraw.Value : remWithdraw.Value)},deposit_remaining={(equalMax.Checked ? maxDepo.Value : remDepo.Value)},maximum_withdrawal={maxWithdraw.Value},maximum_deposit={maxDepo.Value},comment='{comment.Text}',type='{s}' WHERE phone='{phoneNumber.Text}'";
                             command.ExecuteNonQuery();
                             Search_Click(sender, e);
                             if (pb != null)
@@ -148,6 +193,11 @@ namespace Phone_Cash
                     maxWithdraw.Value = reader.GetDecimal(4);
                     maxDepo.Value = reader.GetDecimal(5);
                     comment.Text = reader.GetString(6);
+                    var s = reader.GetString(7);
+                    if (s == null || s == "")
+                        types.Text = "النوع...";
+                    else
+                        types.Text = s;
                 }
                 reader.Close();
                 command.Cancel();
@@ -230,14 +280,17 @@ namespace Phone_Cash
             try
             {
                 connection.Open();
-                command.CommandText = $"SELECT balance FROM phones";
+                if (secondFilter.SelectedIndex > 0)
+                    command.CommandText = $"SELECT balance FROM phones WHERE type = '{secondFilter.Text}'";
+                else
+                    command.CommandText = $"SELECT balance FROM phones";
                 reader = command.ExecuteReader();
                 double count = 0;
                 while (reader.Read()) count += reader.GetDouble(0);
                 reader.Close();
                 command.Cancel();
                 connection.Close();
-                Form1 f = new Form1(balanc: count.ToString(), newFirst: System.IO.File.Exists("newFirst") && System.IO.File.ReadAllText("newFirst") == "1");
+                Form1 f = new Form1(balanc: count.ToString(), newFirst: System.IO.File.Exists("newFirst") && System.IO.File.ReadAllText("newFirst") == "1", type: secondFilter.SelectedIndex > 0 ? secondFilter.Text : null);
                 f.ShowDialog();
             }
             catch (Exception ex)
@@ -279,9 +332,14 @@ namespace Phone_Cash
             {
                 XLWorkbook wb = new XLWorkbook();
                 table.Clear();
+                if (secondFilter.SelectedIndex > 0)
+                    adapter.UpdateCommand.CommandText = $"SELECT * FROM phones WHERE type = '{secondFilter.Text}'";
+                else
+                    adapter.UpdateCommand.CommandText = "SELECT * FROM phones";
                 adapter.Fill(table);
                 wb.Worksheets.Add(table);
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK) wb.SaveAs(saveFileDialog1.FileName);
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    wb.SaveAs(saveFileDialog1.FileName);
             }
             catch (Exception ex)
             {
@@ -303,9 +361,10 @@ namespace Phone_Cash
             }
         }
 
-        private void Filter_SelectedIndexChanged(object sender, EventArgs e)
+        readonly Dictionary<string, string> filters = new Dictionary<string, string>();
+        private void Filter_SelectedIndexChanged(object sender, EventArgs e) // XXX
         {
-            if (filter.SelectedIndex == filter.Items.Count - 1)
+            if (filter.SelectedIndex == filter.Items.Count - 1) // إضافة فلتر
             {
                 var fltr = new AddFilter();
                 fltr.ShowDialog();
@@ -338,6 +397,26 @@ namespace Phone_Cash
                 reader.Close();
                 connection.Close();
             }
+        }
+
+        private void SecondFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            pbLast = null;
+
+            connection.Open();
+
+            if (secondFilter.SelectedIndex > 0)
+                command.CommandText = $"SELECT * FROM phones WHERE type = '{secondFilter.Text}'";
+            else
+                command.CommandText = "SELECT * FROM phones";
+
+            reader = command.ExecuteReader();
+            while (reader.Read())
+                AddPhoneBoxToPanel(reader.GetString(0), reader.GetDouble(1).ToString(), reader.GetDouble(2).ToString() + " - " + reader.GetDouble(3).ToString());
+
+            reader.Close();
+            connection.Close();
         }
 
         //int width=0, height=0;
