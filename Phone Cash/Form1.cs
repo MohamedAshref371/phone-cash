@@ -37,7 +37,7 @@ namespace Phone_Cash
                 adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phoneNumber.Text}'" + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
             else
             {
-                adapter = new SQLiteDataAdapter("SELECT * FROM payments" +(type != null && type.Trim() != "" ? $" WHERE payments.phone = (SELECT phones.phone FROM phones WHERE type='{type}')" : "")+ (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
+                adapter = new SQLiteDataAdapter("SELECT * FROM payments" +(type != null && type.Trim() != "" ? $" WHERE payments.phone = (SELECT phones.phone FROM phones WHERE type='{type}' AND phones.phone = payments.phone)" : "")+ (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
                 add.Enabled = false;
                 withdraw.Enabled = false;
                 amount.Enabled = false;
