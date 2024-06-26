@@ -82,7 +82,19 @@ namespace Phone_Cash
             command.Cancel();
             if (val == 0)
             {
-                command.CommandText = "ALTER TABLE phones ADD COLUMN type TEXT";
+                command.CommandText = "ALTER TABLE phones ADD COLUMN type TEXT DEFAULT ''";
+                command.ExecuteNonQuery();
+                command.Cancel();
+            }
+
+            command.CommandText = "SELECT type FROM phones WHERE type IS NULL"; // fix prev error
+            reader = command.ExecuteReader();
+            bool bit = reader.Read();
+            reader.Close();
+            command.Cancel();
+            if (bit)
+            {
+                command.CommandText = "UPDATE TABLE phones SET type = '' WHERE type IS NULL";
                 command.ExecuteNonQuery();
                 command.Cancel();
             }
