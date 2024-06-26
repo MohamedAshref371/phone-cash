@@ -248,7 +248,7 @@ namespace Phone_Cash
             try
             {
                 connection.Open();
-                string s0 = null, s1 = null, s2 = null, s3 = null, s4 = null, s5 = null;
+                string s0 = null, s1 = null, s2 = null, s3 = null, s4 = null, s5 = null, s6 = null;
                 pb = (PhoneBox)((Button)sender).Tag;
                 command.CommandText = $"SELECT * FROM phones WHERE phone='{pb.phone.Text}'";
                 reader = command.ExecuteReader();
@@ -260,11 +260,12 @@ namespace Phone_Cash
                     s3 = reader.GetDouble(3).ToString();
                     s4 = reader.GetDouble(4).ToString();
                     s5 = reader.GetDouble(5).ToString();
+                    s6 = reader.GetDouble(6).ToString();
                 }
                 reader.Close();
                 command.Cancel();
                 connection.Close();
-                Form1 f = new Form1(s0, s1, s2, s3, s4, s5, System.IO.File.Exists("newFirst") && System.IO.File.ReadAllText("newFirst") == "1");
+                Form1 f = new Form1(s0, s1, s2, s3, s4, s5, s6, System.IO.File.Exists("newFirst") && System.IO.File.ReadAllText("newFirst") == "1");
                 f.ShowDialog();
                 pb.balance.Text = f.balance.Text;
                 pb.remaining.Text = $"{f.remWithdraw.Text} - {f.remDepo.Text}";

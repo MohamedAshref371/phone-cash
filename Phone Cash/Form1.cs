@@ -20,8 +20,7 @@ namespace Phone_Cash
         //SQLiteDataReader reader;
         SQLiteDataAdapter adapter;
         DataTable table;
-        //readonly string type;
-        public Form1(string phone = null, string balanc = null, string remW = null, string remD = null, string maxW = null, string maxD = null, bool newFirst = false, string type = null)
+        public Form1(string phone = null, string balanc = null, string remW = null, string remD = null, string maxW = null, string maxD = null, string type = null, bool newFirst = false)
         {
             InitializeComponent();
             allow = false;
@@ -32,13 +31,13 @@ namespace Phone_Cash
             remDepo.Text = remD;
             maxWithdraw.Text = maxW;
             maxDepo.Text = maxD;
+            this.type.Text = type;
             command = new SQLiteCommand(connection);
             if (phone != null && phone != "")
                 adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phoneNumber.Text}'" + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
             else
             {
                 adapter = new SQLiteDataAdapter("SELECT * FROM payments" + (type != null && type.Trim() != "" ? $" WHERE payments.phone = (SELECT phones.phone FROM phones WHERE type='{type}' AND phones.phone = payments.phone)" : "") + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
-                this.type.Text = type;
                 add.Enabled = false;
                 withdraw.Enabled = false;
                 amount.Enabled = false;
