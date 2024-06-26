@@ -54,6 +54,7 @@
             this.withdraw = new System.Windows.Forms.Button();
             this.del = new System.Windows.Forms.Button();
             this.newFirstCheck = new System.Windows.Forms.CheckBox();
+            this.type = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.amount)).BeginInit();
             this.SuspendLayout();
@@ -316,7 +317,7 @@
             this.withdraw.TabIndex = 27;
             this.withdraw.Text = "سحب";
             this.withdraw.UseVisualStyleBackColor = false;
-            this.withdraw.Click += new System.EventHandler(this.withdraw_Click);
+            this.withdraw.Click += new System.EventHandler(this.Withdraw_Click);
             // 
             // del
             // 
@@ -345,11 +346,22 @@
             this.newFirstCheck.UseVisualStyleBackColor = true;
             this.newFirstCheck.CheckedChanged += new System.EventHandler(this.NewFirstCheck_CheckedChanged);
             // 
+            // type
+            // 
+            this.type.BackColor = System.Drawing.Color.Transparent;
+            this.type.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.type.Location = new System.Drawing.Point(443, 124);
+            this.type.Name = "type";
+            this.type.Size = new System.Drawing.Size(121, 38);
+            this.type.TabIndex = 30;
+            this.type.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 700);
+            this.Controls.Add(this.type);
             this.Controls.Add(this.newFirstCheck);
             this.Controls.Add(this.del);
             this.Controls.Add(this.withdraw);
@@ -379,7 +391,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "فون كاش";
             this.Load += new System.EventHandler(this.Form1_Load);
-            //this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.amount)).EndInit();
             this.ResumeLayout(false);
@@ -413,6 +424,7 @@
         public System.Windows.Forms.Label remWithdraw;
         private System.Windows.Forms.Button del;
         public System.Windows.Forms.CheckBox newFirstCheck;
+        private System.Windows.Forms.Label type;
     }
 }
 

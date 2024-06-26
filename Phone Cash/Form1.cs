@@ -20,7 +20,7 @@ namespace Phone_Cash
         //SQLiteDataReader reader;
         SQLiteDataAdapter adapter;
         DataTable table;
-
+        //readonly string type;
         public Form1(string phone = null, string balanc = null, string remW = null, string remD = null, string maxW = null, string maxD = null, bool newFirst = false, string type = null)
         {
             InitializeComponent();
@@ -37,7 +37,8 @@ namespace Phone_Cash
                 adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phoneNumber.Text}'" + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
             else
             {
-                adapter = new SQLiteDataAdapter("SELECT * FROM payments" +(type != null && type.Trim() != "" ? $" WHERE payments.phone = (SELECT phones.phone FROM phones WHERE type='{type}' AND phones.phone = payments.phone)" : "")+ (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
+                adapter = new SQLiteDataAdapter("SELECT * FROM payments" + (type != null && type.Trim() != "" ? $" WHERE payments.phone = (SELECT phones.phone FROM phones WHERE type='{type}' AND phones.phone = payments.phone)" : "") + (newFirstCheck.Checked ? " ORDER BY id DESC" : ""), connection);
+                this.type.Text = type;
                 add.Enabled = false;
                 withdraw.Enabled = false;
                 amount.Enabled = false;
@@ -87,7 +88,7 @@ namespace Phone_Cash
             }
         }
 
-        private void withdraw_Click(object sender, EventArgs e)
+        private void Withdraw_Click(object sender, EventArgs e)
         {
             try
             {
@@ -181,11 +182,10 @@ namespace Phone_Cash
             try
             {
                 connection.Open();
-                command.Cancel();
                 command.CommandText = $"DELETE FROM payments WHERE phone='{phoneNumber.Text}'";
                 if ((phoneNumber.Text == null || phoneNumber.Text == "") && MessageBox.Show("هل أنت متأكد من مسح كل البيانات؟", ">_<", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    command.CommandText = $"DELETE FROM payments; VACUUM;";
+                    command.CommandText = $"DELETE FROM payments" + (type.Text != null && type.Text.Trim() != "" ? $" WHERE payments.phone = (SELECT phones.phone FROM phones WHERE type='{type.Text}' AND phones.phone = payments.phone)" : "");
                 }
                 command.ExecuteNonQuery();
                 command.Cancel();
@@ -213,7 +213,7 @@ namespace Phone_Cash
                 adapter = new SQLiteDataAdapter($"SELECT * FROM payments WHERE phone='{phoneNumber.Text}'" + (newFirstCheck.Checked? " ORDER BY id DESC":""), connection);
             else
             {
-                adapter = new SQLiteDataAdapter("SELECT * FROM payments" + (newFirstCheck.Checked? " ORDER BY id DESC" : ""), connection);
+                adapter = new SQLiteDataAdapter("SELECT * FROM payments" + (type.Text != null && type.Text.Trim() != "" ? $" WHERE payments.phone = (SELECT phones.phone FROM phones WHERE type='{type.Text}' AND phones.phone = payments.phone)" : "") + (newFirstCheck.Checked? " ORDER BY id DESC" : ""), connection);
             }
 
             Form1_Load(sender, e);
