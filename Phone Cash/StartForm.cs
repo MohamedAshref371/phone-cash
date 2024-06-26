@@ -260,7 +260,7 @@ namespace Phone_Cash
                     s3 = reader.GetDouble(3).ToString();
                     s4 = reader.GetDouble(4).ToString();
                     s5 = reader.GetDouble(5).ToString();
-                    s6 = reader.GetDouble(6).ToString();
+                    s6 = reader.GetString(6);
                 }
                 reader.Close();
                 command.Cancel();
